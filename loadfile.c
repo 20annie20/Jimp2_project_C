@@ -7,13 +7,13 @@
 id loadfile ( char* fn ){
 	FILE *in = fopen( fn, "r" );
 	if( in == NULL ){
-		perror("Nie ma takiego pliku");	
-		exit(EXIT_FAILURE);
+		perror( "Nie ma takiego pliku" );	
+		exit( EXIT_FAILURE );
 	}
 
 	id game = malloc ( sizeof (inputData_t) );
 	int n;			//liczba punktow
-	int a, b, c;	//zmienne pomocnicze przechowywujace czytane wartosci
+	int a, b, c;		//zmienne pomocnicze przechowywujace czytane wartosci
 
 	//pierwsze cztery dane niezbedne
 	if ( fscanf( in, "%d%d%d%d", &a, &b, &c, &n ) == 4 ){
@@ -27,18 +27,18 @@ id loadfile ( char* fn ){
 		game->t = malloc( (game->xx) * sizeof(int*) );
 		game->d = malloc( (game->xx) * sizeof(int*) );
    		for( i = 0; i < game->xx; i++){
-        	game->t[i] = malloc( game->yy * sizeof(int) );
+        		game->t[i] = malloc( game->yy * sizeof(int) );
 			game->d[i] = malloc( game->yy * sizeof(int) );
-    	}
+    		}
 		
 		//zerowanie zawartosci obu tablic
 		int j;
 		for ( j = 0; j < game->yy; j++ ){
-            for (i = 0; i < game->xx; i++ ){
-                game->t[i][j] = 0;
+            		for (i = 0; i < game->xx; i++ ){
+                		game->t[i][j] = 0;
 				game->d[i][j] = 0;
-            }
-        }
+            		}
+       		}
 	
 		//czytanie n par wspolrzednych punktow
 		while (n--){
@@ -47,13 +47,13 @@ id loadfile ( char* fn ){
 					game->t[a][b] = 1;
 				else {
 					errno = 5;
-					perror( "Bledne wartosci w pliku"); 
+					perror( "Bledne wartosci w pliku" ); 
 					exit ( EXIT_FAILURE );
 				}
 			}
 			else {
 				errno = 5;
-				perror( "Zbyt malo danych"); 
+				perror( "Zbyt malo danych" ); 
 				exit ( EXIT_FAILURE );
 			}
 		}
@@ -61,7 +61,7 @@ id loadfile ( char* fn ){
 	}
 	else {
 		errno = 5;
-		perror( "Bledna liczba danych"); 
+		perror( "Bledna liczba danych" ); 
 		exit ( EXIT_FAILURE );
 	}
 

@@ -3,12 +3,16 @@
 
 typedef struct {
 	int g;				//liczba generacji
-	int xx, yy; 		//wymiary planszy
-	int t[100][100];	//plansza
-	int d[100][100];	//duplikat planszy - zapisywanie nastepnej generacji
+	int xx;				//wymiary planszy
+	int yy; 		
+	int **t;			//plansza
+	int **d;			//duplikat planszy - zapisywanie nastepnej generacji
 } inputData_t, *id;
 
 id loadfile ( char* fn );
 //przypisuje zmiennym odpowiednie wartosci 
+
+void releasememory ( id game );
+//custom zwolnienie pamieci dynamicznej tablicy dwuwymiarowej w strukturze
 
 #endif

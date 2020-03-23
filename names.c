@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-#define STR_LEN 30
+#define STR_LEN 40
 
 char * generate_name(int i){
 	char *name = (char*)malloc(sizeof(char)*STR_LEN); //ilosc znakow z malym zapasem
@@ -17,7 +17,8 @@ char * generate_name(int i){
 	char number[2];
 	sprintf(number, "%d", i);
 	
-	strcpy(name, date);
+	strcpy(name, "./dane/");
+	strcat(name, date);
 	strcat(name, "__");
 	strcat(name, number);
 	strcat(name, ".png");

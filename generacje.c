@@ -23,17 +23,8 @@
 //dostaje strukture g z wczytanym prawidlowo plikiem
 void generacje ( id g ){
 
+	//zmienne do iterowania po tablicach oraz do iteracji petli
     int x, y, i;
-
-    for ( y = 0; y < Y; y++ ){
-     	for ( x = 0; x < X; x++ ){
-			dup[x][y] = tab[x][y];
-            printf( "%d", dup[x][y] );
-        }
-		printf("\n");
-    }
-	printf("\n");
-
 
     i = T;
     while ( i-- ){
@@ -62,9 +53,9 @@ void generacje ( id g ){
 
 				//ewentualna zmiana stanu obecnej komorki
                 if ( tab[x][y] == 0 && alive == 3)
-                    dup[x][y] = 1;
+                	dup[x][y] = 1;
                 if ( tab[x][y] == 1 && !(alive == 2 || alive == 3) )
-                        dup[x][y] = 0;										
+                	dup[x][y] = 0;										
 						
             }
         }
@@ -78,4 +69,6 @@ void generacje ( id g ){
             }
         }
     }
+	
+	printf("Poprawnie wygenerowano pliki\n");
 }

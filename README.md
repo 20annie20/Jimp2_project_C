@@ -48,8 +48,8 @@ Podczas wytwarzania plików .png oraz tworzenia kolejnych generacji wykorzystywa
 Aby uruchomić program generujący obrazki po każdej generacji, należy:
 1. Wejść w katalog *src* po pobraniu
 2. Upewnienić się, ze biblioteka `libpng` została zainstalowana na danym urządzeniu
-3. Skompilować program za pomocą polecenia `make game_png'
-4. Wywołać program poleceniem `./game_png [`ścieżka do pliku wejściowego`]`
+3. Skompilować program za pomocą polecenia `make game_png`
+4. Wywołać program poleceniem `./game_png [ścieżka_do_pliku_wejściowego]`
 
 _Ad 4._ Podawanie ścieżki pliku wejśiowego jest opcjonalne - domyślnie program korzysta z pliku `glider_test.txt`, który pokazuje cały jeden cykl poruszania się struktury statku o nazwie *glider*
 

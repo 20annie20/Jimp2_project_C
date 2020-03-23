@@ -17,16 +17,25 @@ void write_png_file(char* file_name, id table){
 
     int size = table->xx > table->yy ? RESOLUTION/table->xx : RESOLUTION/table->yy;
 
-    int width = table->xx * size;
-    int height = table->yy * size;
+    int width = table->yy * size;
+    int height = table->xx * size;
  
     char** byte_table = malloc (sizeof(char*) * height);
+    if (byte_table == NULL){
+	perror("Zabraklo pamieci"); 
+	exit ( EXIT_FAILURE );
+    }
 
     for (int i=0; i<height; i++) {
         byte_table[i] = malloc (sizeof(char) * width);
-        for (int j=0; j < width; j++){
-            char temp = (char)table->d[i/size][j/size] + '0';
-            byte_table[i][j] = temp;
+        if(byte_table[i] == NULL){
+		perror("Zabraklo pamieci");
+		exit( EXIT_FAILURE );
+	}
+
+	for (int j=0; j < width; j++){
+	    char temp = (char)table->d[i/size][j/size] + '0';
+	    byte_table[i][j] = temp;
         }
     }
 

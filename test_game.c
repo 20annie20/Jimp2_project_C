@@ -2,6 +2,7 @@
 #include "loadfile.h"
 #include "generacje.h"
 
+//domyślnie wykorzystuje plik glider_test.txt
 int main( int argc, char** argv ){
 
     char *filename = argc > 1 ? argv[1] : "glider_test.txt";

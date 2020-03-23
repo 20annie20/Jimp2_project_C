@@ -58,6 +58,5 @@ Program po uruchomieniu generuje pliki i zapisuje je odpowiednio: serię .png do
 ### Inne przykłady załączone w kodzie źródłowym
 `beehive_test.txt`: pokazuje przejście układu kilku żywych komórek w statyczną strukturę kryształu (ang. *beehive*)
 `pattern_test.txt`: przejście z trzech oscylujących struktur świateł ulicznych (ang. *blinker*) w dwie takie struktury z ciekawymi efektami 
-
 `sniper_test.txt`: cztery struktury oscylujących świateł ulicznych
 

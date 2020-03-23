@@ -16,12 +16,20 @@ void write_png_file(char* file_name, id table){
 
     int width = table->xx;
     int height = table->yy;
-    char** byte_table = malloc (sizeof(char*) * height);
+    char** byte_table = malloc (sizeof(char*) * height);	
 
     for (int i=0; i<height; i++) {
-        byte_table = malloc (sizeof(char) * width);
-        for (int j=0; j<width; j++)
-            byte_table[i][j] = table->t[i][j];
+        byte_table[i] = malloc (sizeof(char) * width); 
+	for (int j=0; j<width; j++){
+	    char temp = (char)table->d[i][j] + '0';
+	    byte_table[i][j] = temp;
+            printf("%c i %c\n", temp, byte_table[i][j]);
+
+	}
+
+
+	printf("\n");
+
     }
     png_byte bit_depth = 8;
     png_byte color_type = PNG_COLOR_TYPE_GRAY;

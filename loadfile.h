@@ -12,6 +12,9 @@ typedef struct {
 id loadfile ( char* fn );
 //przypisuje zmiennym odpowiednie wartosci 
 
+void createoutputfile ( id game );
+//tworzy plik analogiczny do pliku wejsciowego, zawierajacy wspolrzedne zywych komorek po minieciu g generacji
+
 void releasememory ( id game );
 //zwolnienie pamieci dynamicznej tablicy dwuwymiarowej w strukturze
 

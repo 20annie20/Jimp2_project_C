@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "loadfile.h" //for id datatype, zawiera w sobie errno
 #include "generacje.h"
+#include "names.h"
+#include "write_png.h"
 
 //rozmiary obrazu
 #define X g->xx
@@ -67,21 +69,13 @@ void generacje ( id g ){
             }
         }
 
-        //TU MOZNA GENEROWAC PNG na podstawie duplikatu/////////
-        for ( y = 0; y < Y; y++ ){
-            for ( x = 0; x < X; x++ ){
-                printf( "%d", dup[x][y] );
-            }
-            printf( "\n" );
-        }
-        printf( "\n" );
-        ////////////////////////////////////////////////////////
+        int step = T-i;
+        write_png_file(generate_name(step), g);
 
         for ( y = 0; y < Y; y++ ){
             for ( x = 0; x < X; x++ ){
                 tab[x][y] = dup[x][y];
             }
         }
-		
     }
 }

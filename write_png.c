@@ -8,6 +8,7 @@
 #include "png.h"
 #include "write_png.h"
 #include "loadfile.h"
+#define RESOLUTION 320
 
 void write_png_file(char* file_name, id table){
 
@@ -16,21 +17,19 @@ void write_png_file(char* file_name, id table){
 
     int width = table->xx;
     int height = table->yy;
-    char** byte_table = malloc (sizeof(char*) * height);	
+    int size = width > height ? RESOLUTION/width : RESOLUTION/height;
 
-    for (int i=0; i<height; i++) {
-        byte_table[i] = malloc (sizeof(char) * width); 
-	for (int j=0; j<width; j++){
-	    char temp = (char)table->d[i][j] + '0';
-	    byte_table[i][j] = temp;
-            printf("%c i %c\n", temp, byte_table[i][j]);
-
-	}
+    char** byte_table = malloc (sizeof(char*) * height * size);
 
 
-	printf("\n");
-
+    for (int i=0; i<height*size; i++) {
+        byte_table[i] = malloc (sizeof(char) * width * size);
+        for (int j=0; j < width*size; j++){
+            char temp = (char)table->d[i][j] + '0';
+            byte_table[i][j] = temp;
+        }
     }
+
     png_byte bit_depth = 8;
     png_byte color_type = PNG_COLOR_TYPE_GRAY;
 

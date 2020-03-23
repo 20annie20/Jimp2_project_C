@@ -1,6 +1,3 @@
-game: test_game.o generacje.o loadfile.o 	
-	$(CC) -o game test_game.o generacje.o loadfile.o
-
 game_png: test_game.o generacje.o loadfile.o write_png.o names.o
 	$(CC) -o game_png test_game.o generacje.o loadfile.o write_png.o names.o -lpng
 

@@ -23,52 +23,70 @@
 //dostaje strukture g z wczytanym prawidlowo plikiem
 void generacje ( id g ){
 
-	//zmienne do iterowania po tablicach oraz do iteracji petli
     int x, y, i;
+
+    for ( y = 0; y < Y; y++ ){
+            for ( x = 0; x < X; x++ ){
+				dup[x][y] = tab[x][y];
+                printf( "%d", dup[x][y] );
+            }
+            printf("\n");
+        }
+	printf("\n");
+
 
     i = T;
     while ( i-- ){
         for ( y = 0; y < Y; y++ ){
             for ( x = 0; x < X; x++ ){
-				
+
                 int alive = 0;
 
                 //zliczanie zywych sasiadow
-                if ( x < XX ) 
+                if ( x < XX )
                     alive += tab[x+1][y];
-                if ( y < YY ) 
+                if ( y < YY )
                     alive += tab[x][y+1];
-                if ( x > 0 ) 
+                if ( x > 0 )
                     alive += tab[x-1][y];
-                if ( y > 0 ) 
-                    alive += tab[x][y-1];                        
-                if ( x < XX && y < YY ) 
-                    alive += tab[x+1][y+1];                        
-                if ( x > 0 && y < YY ) 
+                if ( y > 0 )
+                    alive += tab[x][y-1];
+                if ( x < XX && y < YY )
+                    alive += tab[x+1][y+1];
+                if ( x > 0 && y < YY )
                     alive += tab[x-1][y+1];
                 if ( x < XX && y > 0 )
                     alive += tab[x+1][y-1];
-                if ( x > 0 && y > 0 ) 
+                if ( x > 0 && y > 0 )
                     alive += tab[x-1][y-1];
 
 				//ewentualna zmiana stanu obecnej komorki
                 if ( tab[x][y] == 0 && alive == 3)
-                	dup[x][y] = 1;
+                    dup[x][y] = 1;
                 if ( tab[x][y] == 1 && !(alive == 2 || alive == 3) )
-                	dup[x][y] = 0;										
-						
+                        dup[x][y] = 0;
+
             }
         }
 
+        //TU MOZNA GENEROWAC PNG na podstawie duplikatu/////////
+        for ( y = 0; y < Y; y++ ){
+            for ( x = 0; x < X; x++ ){
+                printf( "%d", dup[x][y] );
+            }
+            printf( "\n" );
+        }
+        printf( "\n" );
         int step = T-i;
         write_png_file(generate_name(step), g);
+
+	////////////////////////////////////////////////////////
 
         for ( y = 0; y < Y; y++ ){
             for ( x = 0; x < X; x++ ){
                 tab[x][y] = dup[x][y];
             }
         }
+
     }
-	
-	printf("Poprawnie wygenerowano pliki\n");
 }

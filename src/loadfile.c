@@ -57,16 +57,16 @@ id loadfile ( char* fn ){
 				exit ( EXIT_FAILURE );
 			}
 
-    	}
+    		}
 		
 		//zerowanie zawartosci obu tablic
 		int j;
 		for ( j = 0; j < Y; j++ ){
-            for (i = 0; i < X; i++ ){
-                game->t[i][j] = 0;
+	            for (i = 0; i < X; i++ ){
+        	        game->t[i][j] = 0;
 				game->d[i][j] = 0;
-            }
-        }
+            		}
+        	}
 	
 		//czytanie n par wspolrzednych punktow
 		while (n--){

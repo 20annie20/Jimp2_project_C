@@ -1,8 +1,8 @@
-game_png: test_game.o generacje.o loadfile.o write_png.o names.o
+game_png: main.o generacje.o loadfile.o write_png.o names.o
 	$(CC) -o game_png test_game.o generacje.o loadfile.o write_png.o names.o -lpng
 
-test_game.o: test_game.c generacje.h
-	$(CC) -c test_game.c generacje.h
+main.o: main.c generacje.h
+	$(CC) -c main.c generacje.h
 
 generacje.o: generacje.c generacje.h loadfile.h names.h 
 	$(CC) -c generacje.c generacje.h 

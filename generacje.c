@@ -24,12 +24,12 @@ void generacje ( id g ){
     int x, y, i;
 
     for ( y = 0; y < Y; y++ ){
-            for ( x = 0; x < X; x++ ){
-				dup[x][y] = tab[x][y];
-                printf( "%d", dup[x][y] );
-            }
-            printf("\n");
+     	for ( x = 0; x < X; x++ ){
+			dup[x][y] = tab[x][y];
+            printf( "%d", dup[x][y] );
         }
+		printf("\n");
+    }
 	printf("\n");
 
 

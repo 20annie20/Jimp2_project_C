@@ -43,8 +43,17 @@ void write_png_file(char* file_name, id table){
     png_byte color_type = PNG_COLOR_TYPE_GRAY;
 
     row_pointers = (png_bytep*) malloc(sizeof(png_bytep) * height);
+    if(row_pointers == NULL){
+	    perror("zabraklo pamieci");
+	    exit( EXIT_FAILURE );
+    }
+
     for (y=0; y<height; y++)
         row_pointers[y] = (png_byte*) malloc(sizeof(png_byte) * width);
+	if(row_pointers[y] == NULL){
+		perror("zabraklo pamieci");
+		exit( EXIT_FAILURE );
+	}
 
     for (y=0; y<height; y++) {
         png_byte* row = row_pointers[y];
@@ -55,8 +64,10 @@ void write_png_file(char* file_name, id table){
     }
 
     FILE *fp = fopen(file_name, "wb");
-    if (!fp)
-        printf("[write_png_file] File %s could not be opened for writing", file_name);
+    if (fp == NULL){
+        perror("[write_png_file] File could not be opened for writing");
+	exit( EXIT_FAILURE );
+    }
 
     png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 

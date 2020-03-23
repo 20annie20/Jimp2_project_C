@@ -1,5 +1,5 @@
 game_png: main.o generacje.o loadfile.o write_png.o names.o
-	$(CC) -o game_png test_game.o generacje.o loadfile.o write_png.o names.o -lpng
+	$(CC) -o game_png main.o generacje.o loadfile.o write_png.o names.o -lpng
 
 main.o: main.c generacje.h
 	$(CC) -c main.c generacje.h

@@ -7,8 +7,15 @@
 
 char * generate_name(int i){
 	char *name = (char*)malloc(sizeof(char)*STR_LEN); //ilosc znakow z malym zapasem
+	if(name == NULL){
+		perror("Zabraklo pamieci");
+		exit( EXIT_FAILURE );
+	}
 	char *date = (char*)malloc(sizeof(char)*STR_LEN);
-	
+	if(date == NULL){
+		perror("Zabraklo pamieci");
+		exit( EXIT_FAILURE );
+	}
 	//otrzymanie czasu lokalnego w postaci napisu	
 	time_t now = time(0);
 	struct tm *myTime = localtime(&now); 

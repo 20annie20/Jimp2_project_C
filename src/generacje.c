@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "loadfile.h" //for id datatype, zawiera w sobie errno
 #include "generacje.h"
 #include "names.h"
@@ -76,9 +77,14 @@ void generacje ( id g ){
             }
             printf( "\n" );
         }
-        printf( "\n" );
-        int step = T-i;
-        write_png_file(generate_name(step), g);
+
+	printf( "\n" );
+
+	int step = T-i;
+
+	char *fileName = generate_name(step);
+        write_png_file(fileName, g);
+	free(fileName);
 
 	////////////////////////////////////////////////////////
 

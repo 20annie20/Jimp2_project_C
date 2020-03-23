@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "loadfile.h" //for id datatype
+#include "loadfile.h" //for id datatype, zawiera w sobie errno
 #include "generacje.h"
 
 //rozmiary obrazu
 #define X g->xx
 #define Y g->yy
 
-//->pomocniczo o jeden mniejsza ramka
+//->pomocniczo o jeden mniejsza ramka, by nie wychodzic poza swoja pamiec
 #define XX g->xx-1
 #define YY g->yy-1
 
@@ -24,19 +24,20 @@ void generacje ( id g ){
     int x, y, i;
 
     for ( y = 0; y < Y; y++ ){
-        for ( x = 0; x < X; x++ ){
-			dup[x][y] = tab[x][y]; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            printf( "%d", tab[x][y] );
+            for ( x = 0; x < X; x++ ){
+				dup[x][y] = tab[x][y];
+                printf( "%d", dup[x][y] );
+            }
+            printf("\n");
         }
-        printf("\n");
-    }
 	printf("\n");
+
 
     i = T;
     while ( i-- ){
         for ( y = 0; y < Y; y++ ){
             for ( x = 0; x < X; x++ ){
-		
+				
                 int alive = 0;
 
                 //zliczanie zywych sasiadow
@@ -61,28 +62,26 @@ void generacje ( id g ){
                 if ( tab[x][y] == 0 && alive == 3)
                     dup[x][y] = 1;
                 if ( tab[x][y] == 1 && !(alive == 2 || alive == 3) )
-                        dup[x][y] = 0;
+                        dup[x][y] = 0;										
 						
             }
         }
 
-        //TU MOZNA GENEROWAC PNG na podstawie duplikatu////////
-        for ( y = 0; y < X; y++ ){
-            for ( x = 0; x < Y; x++ ){
+        //TU MOZNA GENEROWAC PNG na podstawie duplikatu/////////
+        for ( y = 0; y < Y; y++ ){
+            for ( x = 0; x < X; x++ ){
                 printf( "%d", dup[x][y] );
             }
             printf( "\n" );
         }
         printf( "\n" );
-        ///////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////
 
-        for ( y = 0; y < X; y++ ){
-            for ( x = 0; x < Y; x++ ){
+        for ( y = 0; y < Y; y++ ){
+            for ( x = 0; x < X; x++ ){
                 tab[x][y] = dup[x][y];
             }
         }
 		
     }
-
-    //return cos czy nie hmmm;
 }

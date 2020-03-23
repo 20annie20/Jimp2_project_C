@@ -77,7 +77,7 @@ void generacje ( id g ){
         }
         printf( "\n" );
  	int step = T-i;
-        write_png_file(generate_name(step), g);
+	write_png_file(generate_name(step), g);
 
         ///////////////////////////////////////////////////////
 
@@ -85,9 +85,6 @@ void generacje ( id g ){
             for ( x = 0; x < Y; x++ ){
                 tab[x][y] = dup[x][y];
             }
-        }
-		
-    }
-
-    //return cos czy nie hmmm;
+        }		
+    }   
 }

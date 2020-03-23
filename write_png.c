@@ -1,11 +1,15 @@
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+#include <time.h>
 
 #include "png.h"
 #include "write_png.h"
+#include "loadfile.h"
 
-void write_png_file(char* file_name, id table) {
+void write_png_file(char* file_name, id table){
 
     int x, y;
     png_bytep * row_pointers;
@@ -29,7 +33,7 @@ void write_png_file(char* file_name, id table) {
     for (y=0; y<height; y++) {
         png_byte* row = row_pointers[y];
         for (x=0; x<width; x++) {
-            if (byte_table[y][x] == defchar) row[x] = 0;
+            if (byte_table[y][x] == '1') row[x] = 0;
             else row[x] = 255;
         }
     }

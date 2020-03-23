@@ -1,23 +1,35 @@
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+#include <time.h>
 
 #include "png.h"
 #include "write_png.h"
+#include "loadfile.h"
 
-void write_png_file(char* file_name, id table) {
+void write_png_file(char* file_name, id table){
 
     int x, y;
     png_bytep * row_pointers;
 
     int width = table->xx;
     int height = table->yy;
-    char** byte_table = malloc (sizeof(char*) * height);
+    char** byte_table = malloc (sizeof(char*) * height);	
 
     for (int i=0; i<height; i++) {
-        byte_table = malloc (sizeof(char) * width);
-        for (int j=0; j<width; j++)
-            byte_table[i][j] = table->t[i][j];
+        byte_table[i] = malloc (sizeof(char) * width); 
+	for (int j=0; j<width; j++){
+	    char temp = (char)table->d[i][j] + '0';
+	    byte_table[i][j] = temp;
+            printf("%c i %c\n", temp, byte_table[i][j]);
+
+	}
+
+
+	printf("\n");
+
     }
     png_byte bit_depth = 8;
     png_byte color_type = PNG_COLOR_TYPE_GRAY;
@@ -29,7 +41,7 @@ void write_png_file(char* file_name, id table) {
     for (y=0; y<height; y++) {
         png_byte* row = row_pointers[y];
         for (x=0; x<width; x++) {
-            if (byte_table[y][x] == defchar) row[x] = 0;
+            if (byte_table[y][x] == '1') row[x] = 0;
             else row[x] = 255;
         }
     }

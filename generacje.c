@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "loadfile.h" //for id datatype
 #include "generacje.h"
+#include "names.h"
+#include "write_png.h"
 
 //rozmiary obrazu
 #define X g->xx
@@ -74,15 +76,15 @@ void generacje ( id g ){
             printf( "\n" );
         }
         printf( "\n" );
+ 	int step = T-i;
+	write_png_file(generate_name(step), g);
+
         ///////////////////////////////////////////////////////
 
         for ( y = 0; y < X; y++ ){
             for ( x = 0; x < Y; x++ ){
                 tab[x][y] = dup[x][y];
             }
-        }
-		
-    }
-
-    //return cos czy nie hmmm;
+        }		
+    }   
 }

@@ -1,6 +1,7 @@
 # Projekt na języki i metody programowania 2 
 Repozytorium projektu automatu komórkowego realizowanego w ramach zajęć Języków i metod programowania 2 przez zespół nr 9
 
+
 ## Gra w życie 
 Gra w życie Conwaya to przykład automatu komórkowego o prostych zasadach: każda komórka ma dwa stany, "żywa" i "martwa"; tworząc nową generację martwa komórka o dokładnie 3 żywych sąsiadach rodzi się, a żywa umiera przy innej liczbie sąsiadów niż 2 lub 3.
 
@@ -12,6 +13,7 @@ Kilka przykładów [z Wikipedii](https://en.wikipedia.org/wiki/Conway%27s_Game_o
 W naszej implementacji Gry w życie przyjęłyśmy następująco:
 - rozważamy stały obszar planszy, wokół którego **nie ma** żadnych komórek;
 - żywa komórka reprezentowana jest kolorem czarnym, a martwa białym.
+
 
 ## Moduły implementacji
 Program podzieliłyśmy na moduły zawierające następujące funkcjonalności:
@@ -41,6 +43,7 @@ Tworząc plik wyjściowy stanu końcowego, zachowałyśmy konwencję umieszczani
 Planszę w naszej implementacji reprezentujemy tablicą dwuwymiarową, stąd z powodów oczywistych wszystkie współrzędne oraz wymiary muszą być liczbami całkowitymi większymi lub równymi zero. Podobnie liczba istniejących żywych komórek z definicji nie może być ujemna.
 Podczas wytwarzania plików .png oraz tworzenia kolejnych generacji wykorzystywana jest również dosyć pokaźna ilość pamięci, jednakże wszelakie błędne, w tym zbyt duże, wartości powodujące błędy przeywają program i wyświetlają stosowny komunikat.
 
+
 ## Uruchamianie programu
 Aby uruchomić program generujący obrazki po każdej generacji, należy:
 1. Wejść w katalog *src* po pobraniu
@@ -55,5 +58,6 @@ Program po uruchomieniu generuje pliki i zapisuje je odpowiednio: serię .png do
 ### Inne przykłady załączone w kodzie źródłowym
 `beehive_test.txt`: pokazuje przejście układu kilku żywych komórek w statyczną strukturę kryształu (ang. *beehive*)
 `pattern_test.txt`: przejście z trzech oscylujących struktur świateł ulicznych (ang. *blinker*) w dwie takie struktury z ciekawymi efektami 
+
 `sniper_test.txt`: cztery struktury oscylujących świateł ulicznych
 

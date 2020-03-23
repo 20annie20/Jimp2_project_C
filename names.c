@@ -24,10 +24,6 @@ char * generate_name(int i){
 	strcat(name, ".png");
 
 	char *cleanName = (char*)malloc(sizeof(char)*STR_LEN + 1);
-	if(cleanName == NULL){
-		perror("Zabraklo pamieci");
-		exit( 	EXIT_FAILURE );
-	}
 
 	int j = 0;
 	for (int n = 0; name[n]!='\0'; n++) {
@@ -37,8 +33,7 @@ char * generate_name(int i){
   		}
 	}
 	cleanName[j] = '\0';
-	free(name);
-	
+
 	return cleanName;
 			
 }

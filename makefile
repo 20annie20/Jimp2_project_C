@@ -19,4 +19,4 @@ write_png.o: write_png.h write_png.c loadfile.h
 .PHONY: clean
 
 clean:
-	-rm *.o game game_png
+	-rm *.o *.gch game game_png

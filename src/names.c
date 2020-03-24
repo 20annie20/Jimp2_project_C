@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-#define STR_LEN 40
+#define STR_LEN 50
 
 char * generate_name(int i){
 	char *name = (char*)malloc(sizeof(char)*STR_LEN); //ilosc znakow z malym zapasem
@@ -16,8 +16,8 @@ char * generate_name(int i){
 	time_t now = time(0);
 	struct tm *myTime = localtime(&now); 
 	char date[STR_LEN];
-	strncpy(date, asctime(myTime), sizeof(asctime(myTime))-1);        
-
+	strcpy(date, asctime(myTime));        
+	
 	char number[2];
 	sprintf(number, "%d", i);
 	

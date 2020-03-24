@@ -98,7 +98,7 @@ id loadfile ( char* fn ){
 }
 
 void createoutputfile ( id game ){
-	FILE *out = fopen( "wynik.txt", "w" );
+	FILE *out = fopen( "../wynik.txt", "w" );
 	if( out == NULL ){
 		perror("Nie udalo sie otworzyc pliku wynik.txt");	
 		abort();		//nie exit, poniewaz nie jest to kluczowy modul

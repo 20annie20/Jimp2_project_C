@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "loadfile.h" //for id datatype, zawiera w sobie errno
 #include "generacje.h"
 #include "names.h"
@@ -8,32 +8,27 @@
 //rozmiary obrazu
 #define X g->xx
 #define Y g->yy
-
 //->pomocniczo o jeden mniejsza ramka, by nie wychodzic poza swoja pamiec
 #define XX g->xx-1
 #define YY g->yy-1
-
 //ile generacji
 #define T g->g
-
 //tablice obecna i duplikat, do przechowywania stanu poprzedniego podczas tworzenia nowego
 #define tab g->t
 #define dup g->d
-
-
 //dostaje strukture g z wczytanym prawidlowo plikiem
 void generacje ( id g ){
-
     int x, y, i;
 
     for ( y = 0; y < Y; y++ ){
-            for ( x = 0; x < X; x++ ){
-				dup[x][y] = tab[x][y];
-                printf( "%d", dup[x][y] );
+     	for ( x = 0; x < X; x++ ){
+	    	dup[x][y] = tab[x][y];
+               	for ( x = 0; x < X; x++ ){
+		dup[x][y] = tab[x][y];             
             }
-            printf("\n");
-        }
-	printf("\n");
+	}
+    }
+
 
 
     i = T;
@@ -42,7 +37,6 @@ void generacje ( id g ){
             for ( x = 0; x < X; x++ ){
 
                 int alive = 0;
-
                 //zliczanie zywych sasiadow
                 if ( x < XX )
                     alive += tab[x+1][y];
@@ -60,7 +54,6 @@ void generacje ( id g ){
                     alive += tab[x+1][y-1];
                 if ( x > 0 && y > 0 )
                     alive += tab[x-1][y-1];
-
 				//ewentualna zmiana stanu obecnej komorki
                 if ( tab[x][y] == 0 && alive == 3)
                     dup[x][y] = 1;
@@ -70,24 +63,11 @@ void generacje ( id g ){
             }
         }
 
-        //TU MOZNA GENEROWAC PNG na podstawie duplikatu/////////
-        for ( y = 0; y < Y; y++ ){
-            for ( x = 0; x < X; x++ ){
-                printf( "%d", dup[x][y] );
-            }
-            printf( "\n" );
-        }
-
-	printf( "\n" );
-
-	int step = T-i;
-
+	int step = T - i;
 	char *fileName = generate_name(step);
         write_png_file(fileName, g);
-	free(fileName);
-
-	////////////////////////////////////////////////////////
-
+        free(fileName);
+                
         for ( y = 0; y < Y; y++ ){
             for ( x = 0; x < X; x++ ){
                 tab[x][y] = dup[x][y];

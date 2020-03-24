@@ -11,16 +11,13 @@ char * generate_name(int i){
 		perror("Zabraklo pamieci");
 		exit( EXIT_FAILURE );
 	}
-	char *date = (char*)malloc(sizeof(char)*STR_LEN);
-	if(date == NULL){
-		perror("Zabraklo pamieci");
-		exit( EXIT_FAILURE );
-	}
+		
 	//otrzymanie czasu lokalnego w postaci napisu	
 	time_t now = time(0);
 	struct tm *myTime = localtime(&now); 
-	date = asctime(myTime);
-	
+	char date[STR_LEN];
+	strncpy(date, asctime(myTime), sizeof(asctime(myTime))-1);        
+
 	char number[2];
 	sprintf(number, "%d", i);
 	
@@ -29,7 +26,7 @@ char * generate_name(int i){
 	strcat(name, "__");
 	strcat(name, number);
 	strcat(name, ".png");
-
+	
 	char *cleanName = (char*)malloc(sizeof(char)*STR_LEN + 1);
 	if(cleanName == NULL){
 		perror("Zabraklo pamieci");
@@ -44,6 +41,7 @@ char * generate_name(int i){
   		}
 	}
 	cleanName[j] = '\0';
+	
 	free(name);
 	
 	return cleanName;

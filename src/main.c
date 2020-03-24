@@ -9,7 +9,11 @@ int main( int argc, char** argv ){
     id gra = loadfile( filename );
 
 	generacje( gra );
+	
+	
+	createoutputfile ( gra );	
 
 	releasememory( gra );
+
     return 0;
 }

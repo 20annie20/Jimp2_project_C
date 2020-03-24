@@ -97,6 +97,37 @@ id loadfile ( char* fn ){
 	return game;
 }
 
+void createoutputfile ( id game ){
+	FILE *out = fopen( "wynik.txt", "w" );
+	if( out == NULL ){
+		perror("Nie udalo sie otworzyc pliku wynik.txt");	
+		abort();		//nie exit, poniewaz nie jest to kluczowy modul
+	}
+	
+	fprintf( out, "%d\n%d %d\n", game->g, game->xx, game->yy );
+
+	//zmienne pomocnicze do zliczenia zywych komorek oraz iterowania po tablicy dwuwymiarowej
+	int alive_counter = 0, i, j;
+
+	for ( j = 0; j < Y; j++ ){
+    	for ( i = 0; i < X; i++ ){
+        	if ( game->d[i][j] == 1 )
+				alive_counter++;
+        }
+    }
+
+	fprintf( out, "%d", alive_counter );
+	
+	int alive = 0;
+	for ( j = 0; j < Y; j++ ){
+    	for ( i = 0; i < X; i++ ){
+        	if ( game->d[i][j] == 1 )
+				fprintf( out, "\n%d %d", i, j );
+        }
+    }
+
+	fclose( out );
+}
 
 void releasememory ( id game ){
 	int i;

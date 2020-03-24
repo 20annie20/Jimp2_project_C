@@ -17,13 +17,13 @@ W naszej implementacji Gry w życie przyjęłyśmy następująco:
 
 ## Moduły implementacji
 Program podzieliłyśmy na moduły zawierające następujące funkcjonalności:
-* obsługa plików `loadfile.c`:
+* `loadfile.c` - obsługa plików:
   - czytanie do struktury przechowującej dane;
   - zapisywanie pliku wynikowego w tym samym formacie co plik wejściowy;
   - poprawne zarządzanie pamięcią w strukturze.
-* tworzenie generacji na poziomie struktury `generacje.c`;
-* generowanie unikalnych nazw plików .png `names.c`;
-* otrzymywanie plików .png na podstawie struktury `write_png.c`.
+* `generacje.c` tworzenie generacji na poziomie struktury;
+* `names.c` generowanie unikalnych nazw plików .png;
+* `write_png.c` otrzymywanie plików .png na podstawie struktury.
 
 Ponadto zamieściłyśmy kilka plików z przykładowymi poprawnymi danymi wejściowymi, odpowiadające plikom z kodem pliki nagłówkowe, plik `makefile` służący sprawnej kompilacji oraz `game_png` - gotowy, uruchamialny plik programu.
 
@@ -41,22 +41,26 @@ Tworząc plik wyjściowy stanu końcowego, zachowałyśmy konwencję umieszczani
 
 ### Ograniczenia
 Planszę w naszej implementacji reprezentujemy tablicą dwuwymiarową, stąd z powodów oczywistych wszystkie współrzędne oraz wymiary muszą być liczbami całkowitymi większymi lub równymi zero. Podobnie liczba istniejących żywych komórek z definicji nie może być ujemna.
-Podczas wytwarzania plików .png oraz tworzenia kolejnych generacji wykorzystywana jest również dosyć pokaźna ilość pamięci, jednakże wszelakie błędne, w tym zbyt duże, wartości powodujące błędy przeywają program i wyświetlają stosowny komunikat.
+Podczas wytwarzania plików .png oraz tworzenia kolejnych generacji wykorzystywana jest również dosyć pokaźna ilość pamięci, jednakże wszelakie błędne, w tym zbyt duże, wartości powodujące wykorzystanie zasobów ponad dostępną pamięć przerywają program i wyświetlają stosowny komunikat.
+
+Maksymalna rozdzielczość plków .png to 320 px.
 
 
 ## Uruchamianie programu
 Aby uruchomić program generujący obrazki po każdej generacji, należy:
-1. Wejść w katalog *src* po pobraniu
-2. Upewnienić się, ze biblioteka `libpng` została zainstalowana na danym urządzeniu
-3. Skompilować program za pomocą polecenia `make game_png`
-4. Wywołać program poleceniem `./game_png [ścieżka_do_pliku_wejściowego]`
+1. Wejść w katalog *src* po pobraniu.
+2. Upewnienić się, ze biblioteka `libpng` została zainstalowana na danym urządzeniu.
+3. Skompilować program za pomocą polecenia `make game_png`.
+4. Wywołać program poleceniem `./game_png [ścieżka_do_pliku_wejściowego]`.
 
-_Ad 4._ Podawanie ścieżki pliku wejśiowego jest opcjonalne - domyślnie program korzysta z pliku `glider_test.txt`, który pokazuje cały jeden cykl poruszania się struktury statku o nazwie *glider*
+_Ad 4._ Podawanie ścieżki pliku wejśiowego jest opcjonalne - domyślnie program korzysta z pliku `glider_test.txt`, który pokazuje cały jeden cykl poruszania się struktury statku o nazwie *glider*.
 
 Program po uruchomieniu generuje pliki i zapisuje je odpowiednio: serię .png do katalogu `dane`, a jeden końcowy .txt do katalogu bieżącego, tj `src`.
 
 ### Inne przykłady załączone w kodzie źródłowym
 `beehive_test.txt`: pokazuje przejście układu kilku żywych komórek w statyczną strukturę kryształu (ang. *beehive*)
+
 `pattern_test.txt`: przejście z trzech oscylujących struktur świateł ulicznych (ang. *blinker*) w dwie takie struktury z ciekawymi efektami 
+
 `sniper_test.txt`: cztery struktury oscylujących świateł ulicznych
 

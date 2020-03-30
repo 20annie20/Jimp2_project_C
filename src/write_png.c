@@ -17,8 +17,8 @@ void write_png_file(char* file_name, id table){
 
     int size = table->xx > table->yy ? RESOLUTION/table->xx : RESOLUTION/table->yy;
 
-    int width = table->yy * size;
-    int height = table->xx * size;
+    int width = table->xx * size;
+    int height = table->yy * size;
  
     char** byte_table = malloc (sizeof(char*) * height);
     if (byte_table == NULL){
@@ -48,12 +48,13 @@ void write_png_file(char* file_name, id table){
 	    exit( EXIT_FAILURE );
     }
 
-    for (y=0; y<height; y++)
+    for (y=0; y<height; y++) {
         row_pointers[y] = (png_byte*) malloc(sizeof(png_byte) * width);
 	if(row_pointers[y] == NULL){
 		perror("zabraklo pamieci");
 		exit( EXIT_FAILURE );
 	}
+    }
 
     for (y=0; y<height; y++) {
         png_byte* row = row_pointers[y];
